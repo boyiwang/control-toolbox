@@ -179,6 +179,8 @@ public:
     //! reset the mpc problem and provide new problem time horizon (mandatory)
     void resetMpc(const Scalar_t& newTimeHorizon);
 
+    void changeCostFunction(const typename OptConProblem_t::CostFunctionPtr_t& cf);
+
 
     //! update the mpc settings in all instances (main class, time keeper class, etc)
     /*!

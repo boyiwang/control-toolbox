@@ -281,6 +281,10 @@ void MPC<OPTCON_SOLVER>::resetMpc(const Scalar_t& newTimeHorizon)
     timeKeeper_.initialize();
 }
 
+template <typename OPTCON_SOLVER>
+void MPC<OPTCON_SOLVER>::changeCostFunction(const typename OptConProblem_t::CostFunctionPtr_t& cf) {
+    solver_.changeCostFunction(cf);
+}
 
 template <typename OPTCON_SOLVER>
 void MPC<OPTCON_SOLVER>::updateSettings(const mpc_settings& settings)
