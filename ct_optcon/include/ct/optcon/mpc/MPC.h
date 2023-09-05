@@ -244,6 +244,8 @@ private:
     //! currently optimal policy, initial guess respectively
     Policy_t currentPolicy_;
 
+    std::shared_ptr<Policy_t> prevController_;
+
     //! time horizon strategy, e.g. receding horizon optimal control
     std::shared_ptr<tpl::MpcTimeHorizon<Scalar_t>> timeHorizonStrategy_;
 

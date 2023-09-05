@@ -127,8 +127,9 @@ void MPC<OPTCON_SOLVER>::doForwardIntegration(const Scalar_t& t_forward_start,
         else
         {
             // ... or with the controller obtained from the solver (solution of last mpc-run).
-            std::shared_ptr<Policy_t> prevController(new Policy_t(currentPolicy_));
-            integrateForward(t_forward_start, t_forward_stop, x_start, prevController);
+            // wby 
+            // std::shared_ptr<Policy_t> prevController(new Policy_t(currentPolicy_));
+            integrateForward(t_forward_start, t_forward_stop, x_start, prevController_);
         }
     }
 }
@@ -155,6 +156,11 @@ void MPC<OPTCON_SOLVER>::prepareIteration(const Scalar_t& extTime)
     // update the Optimal Control Solver with new time horizon and state information
     solver_.changeTimeHorizon(newTimeHorizon);
 
+    // wby before designing warm state policy, save the previous policy first if enabling stateForwardIntegration.
+    if (mpc_settings_.stateForwardIntegration_ == true) {
+        // prevController_ = new Policy_t(currentPolicy_); // wrong usage
+        prevController_ = std::shared_ptr<Policy_t>(new Policy_t(currentPolicy_));
+    }
 
     // Calculate new initial guess / warm-starting policy
     policyHandler_->designWarmStartingPolicy(t_forward_stop_, newTimeHorizon, currentPolicy_);

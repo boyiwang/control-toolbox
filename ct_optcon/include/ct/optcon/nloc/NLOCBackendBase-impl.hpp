@@ -1403,6 +1403,7 @@ void NLOCBackendBase<STATE_DIM, CONTROL_DIM, P_DIM, V_DIM, SCALAR, CONTINUOUS>::
             delta_u_ff_ = lqocSolver_->getSolutionControl();
             delta_x_ = lqocSolver_->getSolutionState();
             delta_x_ref_lqr_.setConstant(ct::core::StateVector<STATE_DIM, SCALAR>::Zero());
+            L_ = lqocSolver_->getSolutionFeedback(); // wby
             break;
         }
         case NLOptConSettings::NLOCP_ALGORITHM::ILQR:
