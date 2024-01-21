@@ -156,6 +156,7 @@ inline void loadMpcSettings(const std::string& filename, mpc_settings& settings)
     settings.measureDelay_ = pt.get<bool>("mpc.measureDelay");
     settings.stateForwardIntegration_ = pt.get<bool>("mpc.stateForwardIntegration");
     settings.stateForwardIntegration_dt_ = pt.get<double>("mpc.stateForwardIntegration_dt");
+    settings.mpc_mode = (ct::optcon::MPC_MODE)pt.get<int>("mpc.mpc_mode");
     settings.stateForwardIntegratorType_ = (ct::core::IntegrationType)pt.get<int>("mpc.stateForwardIntegratorType");
     settings.fixedDelayUs_ = pt.get<int>("mpc.fixedDelayUs");
     settings.additionalDelayUs_ = pt.get<int>("mpc.additionalDelayUs");

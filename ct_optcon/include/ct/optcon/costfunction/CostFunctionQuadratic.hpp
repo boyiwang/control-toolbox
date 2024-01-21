@@ -168,6 +168,10 @@ public:
     //! update the reference control for intermediate cost terms
     virtual void updateReferenceControl(const control_vector_t& u_ref);
 
+    //! add offset to reference state and control
+    virtual void addStateAndControlReferenceOffset(const state_vector_t& xOffset,
+        const control_vector_t& uOffset);
+
     //! compare the state derivative against numerical differentiation
     bool stateDerivativeIntermediateTest(bool verbose = false);
 
@@ -239,6 +243,9 @@ protected:
 
     /** list of final cost terms for which analytic derivatives are available */
     std::vector<std::shared_ptr<TermBase<STATE_DIM, CONTROL_DIM, SCALAR>>> finalCostAnalytical_;
+
+    state_vector_t   last_xOffset;
+    control_vector_t last_uOffset;
 };
 
 

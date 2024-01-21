@@ -293,6 +293,12 @@ void MPC<OPTCON_SOLVER>::changeCostFunction(const typename OptConProblem_t::Cost
 }
 
 template <typename OPTCON_SOLVER>
+void MPC<OPTCON_SOLVER>::changeNonlinearSystem(const typename OPTCON_SOLVER::OptConProblem_t::DynamicsPtr_t& dyn) {
+    solver_.changeNonlinearSystem(dyn);
+    dynamics_ = typename OPTCON_SOLVER::OptConProblem_t::DynamicsPtr_t(dyn->clone());
+}
+
+template <typename OPTCON_SOLVER>
 void MPC<OPTCON_SOLVER>::updateSettings(const mpc_settings& settings)
 {
     checkSettings(settings);

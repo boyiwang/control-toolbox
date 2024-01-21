@@ -204,6 +204,13 @@ void TermBase<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::updateReferenceContr
 }
 
 template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
+void TermBase<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::addStateAndControlReferenceOffset(
+    const Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1>& xOffset,
+    const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& uOffset)
+{
+}
+
+template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
 Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1> TermBase<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::getReferenceState()
     const
 {

@@ -174,6 +174,10 @@ public:
     //! updates the reference control for this term
     virtual void updateReferenceControl(const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& newRefControl);
 
+    //! add offset to state and control
+    virtual void addStateAndControlReferenceOffset(const Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1>& xOffset,
+        const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& uOffset);
+
     //! retrieve this term's current reference state
     virtual Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1> getReferenceState() const;
 };

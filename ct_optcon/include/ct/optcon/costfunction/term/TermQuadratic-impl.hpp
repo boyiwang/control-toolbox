@@ -116,6 +116,14 @@ void TermQuadratic<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::setStateAndCont
     u_ref_ = u_ref;
 }
 
+template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
+void TermQuadratic<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::addStateAndControlReferenceOffset(
+    const Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1>& xOffset,
+    const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& uOffset)
+{
+    x_ref_ += xOffset;
+    u_ref_ += uOffset;
+}
 
 template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
 SCALAR TermQuadratic<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::evaluate(

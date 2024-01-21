@@ -73,6 +73,21 @@ void TermQuadTracking<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::setStateAndC
     u_traj_ref_ = uTraj;
 }
 
+template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
+void TermQuadTracking<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::shiftTime(const double& dt)
+{
+    x_traj_ref_.shiftTime(dt);
+    u_traj_ref_.shiftTime(dt);
+}
+
+template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
+void TermQuadTracking<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::addStateAndControlReferenceOffset(
+    const Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1>& xOffset,
+    const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& uOffset)
+{
+    x_traj_ref_.addDataOffset(xOffset);
+    u_traj_ref_.addDataOffset(uOffset);
+}
 
 template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR_EVAL, typename SCALAR>
 SCALAR TermQuadTracking<STATE_DIM, CONTROL_DIM, SCALAR_EVAL, SCALAR>::evaluate(

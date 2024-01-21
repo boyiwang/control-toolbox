@@ -109,6 +109,17 @@ void CostFunctionQuadratic<STATE_DIM, CONTROL_DIM, SCALAR>::updateReferenceContr
 }
 
 template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR>
+void CostFunctionQuadratic<STATE_DIM, CONTROL_DIM, SCALAR>::addStateAndControlReferenceOffset(const state_vector_t& xOffset,
+        const control_vector_t& uOffset)
+{
+    for (auto costIntermediate : intermediateCostAnalytical_) {
+        costIntermediate->addStateAndControlReferenceOffset(xOffset - last_xOffset, uOffset - last_uOffset);
+    }
+    last_xOffset = xOffset;
+    last_uOffset = uOffset;
+}
+
+template <size_t STATE_DIM, size_t CONTROL_DIM, typename SCALAR>
 bool CostFunctionQuadratic<STATE_DIM, CONTROL_DIM, SCALAR>::stateDerivativeIntermediateTest(bool verbose)
 {
     state_vector_t derivative = stateDerivativeIntermediate();

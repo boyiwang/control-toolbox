@@ -181,6 +181,7 @@ public:
 
     void changeCostFunction(const typename OptConProblem_t::CostFunctionPtr_t& cf);
 
+    void changeNonlinearSystem(const typename OPTCON_SOLVER::OptConProblem_t::DynamicsPtr_t& dyn);
 
     //! update the mpc settings in all instances (main class, time keeper class, etc)
     /*!

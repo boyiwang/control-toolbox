@@ -62,6 +62,9 @@ public:
     void setStateAndControlReference(const core::StateVector<STATE_DIM, SCALAR_EVAL>& x_ref,
         const core::ControlVector<CONTROL_DIM, SCALAR_EVAL>& u_ref);
 
+    void addStateAndControlReferenceOffset(const Eigen::Matrix<SCALAR_EVAL, STATE_DIM, 1>& xOffset,
+        const Eigen::Matrix<SCALAR_EVAL, CONTROL_DIM, 1>& uOffset) override;
+        
     virtual SCALAR evaluate(const Eigen::Matrix<SCALAR, STATE_DIM, 1>& x,
         const Eigen::Matrix<SCALAR, CONTROL_DIM, 1>& u,
         const SCALAR& t) override;

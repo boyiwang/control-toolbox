@@ -125,6 +125,7 @@ public:
 	 * @param dt offset (negative offset will be applied to timestamps)
 	 */
     void shiftTime(const SCALAR& dt) { time_.addOffset(-dt); }
+    void addDataOffset(const T& offset) { data_.addOffset(offset); }
     //! evaluate the trajectory at a certain time
     /*!
 	 * This evaluates the trajectory at a certain time. If the exact time is not
